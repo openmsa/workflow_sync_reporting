@@ -1,0 +1,272 @@
+<ObjectDefinition>
+  <variables frozen="0">
+    <variable displayName="auth_key" name="params.auth_key" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="start_date" name="params.start_date" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="2019-5-10 23:40:00" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="end_date" name="params.end_date" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="2019-5-10 23:40:00" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="pdf_link" name="params.pdf_link" startIncrement="0" type="Link" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="4" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="csv_link" name="params.csv_link" startIncrement="0" type="Link" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="5" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="send_email" name="params.send_email" startIncrement="0" type="Boolean" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" default="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="sender_email" name="params.sender_email" startIncrement="0" type="Composite" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="6" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" selector="params.send_email" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false">
+      <behaviors>
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="sender_email" displayOrder="6" maxLength="100" isMandatory="false" isUserLocked="false" name="params.sender_email" selectorValue="true" startIncrement="0" type="String">
+          <compositeKey>false</compositeKey>
+          <codeLanguage/>
+          <defaultValueLong/>
+          <description></description>
+          <displayNameHeader></displayNameHeader>
+          <fullDisplayName></fullDisplayName>
+          <groupDisplayName></groupDisplayName>
+          <groupSeparator></groupSeparator>
+          <isGrouped>false</isGrouped>
+          <increment>0</increment>
+          <isCompositeKey>false</isCompositeKey>
+          <keepOnImport>false</keepOnImport>
+          <mandatoryArray>false</mandatoryArray>
+          <onlyDetailView>false</onlyDetailView>
+          <refDeviceIdVar/>
+          <refServiceURI></refServiceURI>
+          <isSearchable>false</isSearchable>
+          <selector>params.send_email</selector>
+          <isUniqueGlobal>false</isUniqueGlobal>
+        </behaviour>
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="sender_email" displayOrder="6" maxLength="100" isMandatory="false" isUserLocked="false" name="params.sender_email" selectorValue="false" startIncrement="0" type="String">
+          <compositeKey>false</compositeKey>
+          <codeLanguage/>
+          <defaultValueLong/>
+          <description></description>
+          <displayNameHeader></displayNameHeader>
+          <fullDisplayName></fullDisplayName>
+          <groupDisplayName></groupDisplayName>
+          <groupSeparator></groupSeparator>
+          <isGrouped>false</isGrouped>
+          <increment>0</increment>
+          <isCompositeKey>false</isCompositeKey>
+          <keepOnImport>false</keepOnImport>
+          <mandatoryArray>false</mandatoryArray>
+          <onlyDetailView>false</onlyDetailView>
+          <refDeviceIdVar/>
+          <refServiceURI></refServiceURI>
+          <isSearchable>false</isSearchable>
+          <selector>params.send_email</selector>
+          <isUniqueGlobal>false</isUniqueGlobal>
+        </behaviour>
+      </behaviors>
+    </variable>
+    <variable displayName="sender_password" name="params.sender_password" startIncrement="0" type="Composite" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="7" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" selector="params.send_email" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false">
+      <behaviors>
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="sender_password" displayOrder="7" maxLength="100" isMandatory="false" isUserLocked="false" name="params.sender_password" selectorValue="true" startIncrement="0" type="String">
+          <compositeKey>false</compositeKey>
+          <codeLanguage/>
+          <defaultValueLong/>
+          <description></description>
+          <displayNameHeader></displayNameHeader>
+          <fullDisplayName></fullDisplayName>
+          <groupDisplayName></groupDisplayName>
+          <groupSeparator></groupSeparator>
+          <isGrouped>false</isGrouped>
+          <increment>0</increment>
+          <isCompositeKey>false</isCompositeKey>
+          <keepOnImport>false</keepOnImport>
+          <mandatoryArray>false</mandatoryArray>
+          <onlyDetailView>false</onlyDetailView>
+          <refDeviceIdVar/>
+          <refServiceURI></refServiceURI>
+          <isSearchable>false</isSearchable>
+          <selector>params.send_email</selector>
+          <isUniqueGlobal>false</isUniqueGlobal>
+        </behaviour>
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="sender_password" displayOrder="7" maxLength="100" isMandatory="false" isUserLocked="false" name="params.sender_password" selectorValue="false" startIncrement="0" type="String">
+          <compositeKey>false</compositeKey>
+          <codeLanguage/>
+          <defaultValueLong/>
+          <description></description>
+          <displayNameHeader></displayNameHeader>
+          <fullDisplayName></fullDisplayName>
+          <groupDisplayName></groupDisplayName>
+          <groupSeparator></groupSeparator>
+          <isGrouped>false</isGrouped>
+          <increment>0</increment>
+          <isCompositeKey>false</isCompositeKey>
+          <keepOnImport>false</keepOnImport>
+          <mandatoryArray>false</mandatoryArray>
+          <onlyDetailView>false</onlyDetailView>
+          <refDeviceIdVar/>
+          <refServiceURI></refServiceURI>
+          <isSearchable>false</isSearchable>
+          <selector>params.send_email</selector>
+          <isUniqueGlobal>false</isUniqueGlobal>
+        </behaviour>
+      </behaviors>
+    </variable>
+    <variable displayName="receiver_email" name="params.receiver_email" startIncrement="0" type="Composite" mandatoryArray="false" visible="true" description="xxx@xxx.com,yyy@yyy.com,zzz@zzz.com" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="8" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" selector="params.send_email" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false">
+      <behaviors>
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="receiver_email" displayOrder="8" maxLength="100" isMandatory="false" isUserLocked="false" name="params.receiver_email" selectorValue="true" startIncrement="0" type="String">
+          <compositeKey>false</compositeKey>
+          <codeLanguage/>
+          <defaultValueLong/>
+          <description>xxx@xxx.com,yyy@yyy.com,zzz@zzz.com</description>
+          <displayNameHeader></displayNameHeader>
+          <fullDisplayName></fullDisplayName>
+          <groupDisplayName></groupDisplayName>
+          <groupSeparator></groupSeparator>
+          <isGrouped>false</isGrouped>
+          <increment>0</increment>
+          <isCompositeKey>false</isCompositeKey>
+          <keepOnImport>false</keepOnImport>
+          <mandatoryArray>false</mandatoryArray>
+          <onlyDetailView>false</onlyDetailView>
+          <refDeviceIdVar/>
+          <refServiceURI></refServiceURI>
+          <isSearchable>false</isSearchable>
+          <selector>params.send_email</selector>
+          <isUniqueGlobal>false</isUniqueGlobal>
+        </behaviour>
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="receiver_email" displayOrder="8" maxLength="100" isMandatory="false" isUserLocked="false" name="params.receiver_email" selectorValue="false" startIncrement="0" type="String">
+          <compositeKey>false</compositeKey>
+          <codeLanguage/>
+          <defaultValueLong/>
+          <description>xxx@xxx.com,yyy@yyy.com,zzz@zzz.com</description>
+          <displayNameHeader></displayNameHeader>
+          <fullDisplayName></fullDisplayName>
+          <groupDisplayName></groupDisplayName>
+          <groupSeparator></groupSeparator>
+          <isGrouped>false</isGrouped>
+          <increment>0</increment>
+          <isCompositeKey>false</isCompositeKey>
+          <keepOnImport>false</keepOnImport>
+          <mandatoryArray>false</mandatoryArray>
+          <onlyDetailView>false</onlyDetailView>
+          <refDeviceIdVar/>
+          <refServiceURI></refServiceURI>
+          <isSearchable>false</isSearchable>
+          <selector>params.send_email</selector>
+          <isUniqueGlobal>false</isUniqueGlobal>
+        </behaviour>
+      </behaviors>
+    </variable>
+    <variable displayName="subject" name="params.subject" startIncrement="0" type="Composite" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="9" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" selector="params.send_email" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false">
+      <behaviors>
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="subject" displayOrder="9" maxLength="100" isMandatory="false" isUserLocked="false" name="params.subject" selectorValue="true" startIncrement="0" type="String">
+          <compositeKey>false</compositeKey>
+          <codeLanguage/>
+          <defaultValueLong/>
+          <description></description>
+          <displayNameHeader></displayNameHeader>
+          <fullDisplayName></fullDisplayName>
+          <groupDisplayName></groupDisplayName>
+          <groupSeparator></groupSeparator>
+          <isGrouped>false</isGrouped>
+          <increment>0</increment>
+          <isCompositeKey>false</isCompositeKey>
+          <keepOnImport>false</keepOnImport>
+          <mandatoryArray>false</mandatoryArray>
+          <onlyDetailView>false</onlyDetailView>
+          <refDeviceIdVar/>
+          <refServiceURI></refServiceURI>
+          <isSearchable>false</isSearchable>
+          <selector>params.send_email</selector>
+          <isUniqueGlobal>false</isUniqueGlobal>
+        </behaviour>
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="subject" displayOrder="9" maxLength="100" isMandatory="false" isUserLocked="false" name="params.subject" selectorValue="false" startIncrement="0" type="String">
+          <compositeKey>false</compositeKey>
+          <codeLanguage/>
+          <defaultValueLong/>
+          <description></description>
+          <displayNameHeader></displayNameHeader>
+          <fullDisplayName></fullDisplayName>
+          <groupDisplayName></groupDisplayName>
+          <groupSeparator></groupSeparator>
+          <isGrouped>false</isGrouped>
+          <increment>0</increment>
+          <isCompositeKey>false</isCompositeKey>
+          <keepOnImport>false</keepOnImport>
+          <mandatoryArray>false</mandatoryArray>
+          <onlyDetailView>false</onlyDetailView>
+          <refDeviceIdVar/>
+          <refServiceURI></refServiceURI>
+          <isSearchable>false</isSearchable>
+          <selector>params.send_email</selector>
+          <isUniqueGlobal>false</isUniqueGlobal>
+        </behaviour>
+      </behaviors>
+    </variable>
+    <variable displayName="message" name="params.message" startIncrement="0" type="Composite" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="10" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" selector="params.send_email" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false">
+      <behaviors>
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="message" displayOrder="10" maxLength="100" isMandatory="false" isUserLocked="false" name="params.message" selectorValue="true" startIncrement="0" type="String">
+          <compositeKey>false</compositeKey>
+          <codeLanguage/>
+          <defaultValueLong/>
+          <description></description>
+          <displayNameHeader></displayNameHeader>
+          <fullDisplayName></fullDisplayName>
+          <groupDisplayName></groupDisplayName>
+          <groupSeparator></groupSeparator>
+          <isGrouped>false</isGrouped>
+          <increment>0</increment>
+          <isCompositeKey>false</isCompositeKey>
+          <keepOnImport>false</keepOnImport>
+          <mandatoryArray>false</mandatoryArray>
+          <onlyDetailView>false</onlyDetailView>
+          <refDeviceIdVar/>
+          <refServiceURI></refServiceURI>
+          <isSearchable>false</isSearchable>
+          <selector>params.send_email</selector>
+          <isUniqueGlobal>false</isUniqueGlobal>
+        </behaviour>
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="message" displayOrder="10" maxLength="100" isMandatory="false" isUserLocked="false" name="params.message" selectorValue="false" startIncrement="0" type="String">
+          <compositeKey>false</compositeKey>
+          <codeLanguage/>
+          <defaultValueLong/>
+          <description></description>
+          <displayNameHeader></displayNameHeader>
+          <fullDisplayName></fullDisplayName>
+          <groupDisplayName></groupDisplayName>
+          <groupSeparator></groupSeparator>
+          <isGrouped>false</isGrouped>
+          <increment>0</increment>
+          <isCompositeKey>false</isCompositeKey>
+          <keepOnImport>false</keepOnImport>
+          <mandatoryArray>false</mandatoryArray>
+          <onlyDetailView>false</onlyDetailView>
+          <refDeviceIdVar/>
+          <refServiceURI></refServiceURI>
+          <isSearchable>false</isSearchable>
+          <selector>params.send_email</selector>
+          <isUniqueGlobal>false</isUniqueGlobal>
+        </behaviour>
+      </behaviors>
+    </variable>
+  </variables>
+  <example/>
+  <process name="Process/workflows/read/Process_read_es_data">
+    <displayName>generate_report</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_read_es.py">
+      <processPath>/opt/fmc_repository/Process/workflows/read/Process_read_es_data/Tasks</processPath>
+      <displayName>read_es</displayName>
+    </task>
+  </process>
+  <process name="Process/workflows/read/Process_create">
+    <displayName>create</displayName>
+    <type>CREATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_create.py">
+      <processPath>/opt/fmc_repository/Process/workflows/read/Process_create/Tasks</processPath>
+      <displayName>create</displayName>
+    </task>
+  </process>
+  <information>
+    <icon/>
+    <description/>
+    <displayField>service_id</displayField>
+    <serviceTaskType>python</serviceTaskType>
+    <order>10000</order>
+    <visibility>5</visibility>
+    <processToAssiocateToTrashIcon/>
+    <name>DB-sync-report</name>
+    <group/>
+  </information>
+</ObjectDefinition>
