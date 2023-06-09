@@ -1,6 +1,6 @@
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
-from reportlab.lib.pagesizes import letter, landscape, A1
+from reportlab.lib.pagesizes import letter, landscape, A2
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
@@ -20,9 +20,27 @@ import csv
 import os
 import pandas as pd
 
+es_host = 'http://msa-es:9200'
+
+index = 'ubi-sync-*'
+rows_per_page = 45
+doc_path = '/opt/fmc_repository/Process/workflows/esResultFiles'
+file_name = time.strftime("%Y-%m-%d %H-%M-%S") + '-db-sync-report'
+
+if not os.path.exists(doc_path):
+	os.makedirs(doc_path)
+
+def generate_headers_values(data):
+	headers, values = [],[]
+	if data:
+		header_formart = [list(obj.keys()) for obj in data][0]
+		headers = [headers_dic.get(h) for h in header_formart]
+		values = [list(obj.values()) for obj in data]
+	return headers, values
+
 def process_data(data):
+	table_file_data, table_db_data = [], []
 	for d in data:
-		d['target_size'] = str(d['target_size']) + ' KB' if d['target_size'] else ''
 		d['backup_start'] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(int(d['backup_start']))) if d['backup_start'] else ''
 		d['backup_end'] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(int(d['backup_end']))) if d['backup_end'] else ''
 		d['restore_start'] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(int(d['restore_start']))) if d['restore_start'] else ''
@@ -30,7 +48,17 @@ def process_data(data):
 		formatted_timestamp = d['_timestamp_'][:-4] + d['_timestamp_'][-1]
 		d['_timestamp_'] = time.strftime("%Y-%m-%d %H:%M:%S",time.strptime(formatted_timestamp, "%Y-%m-%dT%H:%M:%S.%fZ")) if d['_timestamp_'] else ''
 		del d['_timestamp_epoch_']
-	return data
+		if d['type'] == 'FILE_SYNC':
+			file_data = copy.deepcopy(d)
+			del file_data['restore_end']
+			del file_data['restore_start']
+			del file_data['type']
+			table_file_data.append(file_data)
+		elif d['type'] == 'DB_SYNC':
+			db_data = copy.deepcopy(d)
+			del db_data['type']
+			table_db_data.append(db_data)
+	return data, table_file_data, table_db_data
 
 def query_conditions(context):
 	ranges = {}
@@ -50,10 +78,10 @@ def query_conditions(context):
 	ranges['_timestamp_epoch_'] = timestamp
 
 	query = {
-    	'query': {
-        	'range': ranges
-    	},
-    	'size': 1000
+		'query': {
+			'range': ranges
+		},
+		'size': 1000
 	}
 	
 	return query
@@ -61,7 +89,7 @@ def query_conditions(context):
 def search(query_condition, context):
 	
 	auth_key = context['auth_key']
-	es = Elasticsearch(hosts='http://10.31.1.56:9200', basic_auth=auth_key)
+	es = Elasticsearch(hosts=es_host, basic_auth=auth_key)
 	resp = es.search(index=index, body=query_condition, scroll='1m')
 
 	scroll_id = resp["_scroll_id"]
@@ -85,7 +113,62 @@ def search(query_condition, context):
 			data.append(hit["_source"])
 	return data
 
-def write_to_csv(headers, values):
+def create_pdf_story(data_type, data, story, style):
+	headers, values = generate_headers_values(data)
+	if values:
+		df = pd.DataFrame(values[1:], columns=values[0])
+		data = [df.columns.tolist()] + df.values.tolist()
+		col_widths = [0] * len(data[0])
+		data_adjust_width = copy.deepcopy(data)
+		data_adjust_width.insert(0, headers)
+
+		for row in data_adjust_width:
+			for i, cell in enumerate(row):
+				col_widths[i] = max(col_widths[i], len(str(cell)) * 6)
+
+		data_pages = [data[i:i + rows_per_page] for i in range(0, len(data), rows_per_page)]
+
+		for i, data_page in enumerate(data_pages):
+			if i == 0:
+				title = data_type + '-sync-report'
+				title_style = getSampleStyleSheet()["Title"]
+				title_style.fontSize = 28
+				title_paragraph = Paragraph(title, title_style)
+
+				image_path = "/opt/fmc_repository/Process/workflows/read/ubi_logo.png"
+				image_top = Image(image_path, width=180, height=40)
+				image_top.hAlign = 'RIGHT'
+				image_top.vAlign = 'TOP'
+
+			data_page.insert(0, headers)
+			table = Table(data_page)
+			table._argW = col_widths
+			table.setStyle(style)
+
+			image_botton = Image(image_path, width=90, height=20)
+			image_botton.hAlign = 'LEFT'
+			image_botton.vAlign = 'BOTTON'
+
+			text = "Report generated at " + time.ctime()
+			text_style = getSampleStyleSheet()["h5"]
+			text_style.alignment = 1
+			text_paragraph = Paragraph(text, text_style)
+
+			page_number = str(i + 1)
+			page_style = getSampleStyleSheet()["h5"]
+			page_style.alignment = 2
+			page_paragraph = Paragraph(page_number, page_style)
+
+			if i == 0:
+				story.append(KeepTogether(
+					[image_top, title_paragraph, Spacer(0, 10), table, Spacer(0, 10), text_paragraph, image_botton,
+					page_paragraph, PageBreak()]))
+			else:
+				story.append(KeepTogether(
+					[Spacer(0, 30), table, Spacer(0, 30), text_paragraph, image_botton, page_paragraph, PageBreak()]))
+
+def write_to_csv(data):
+	headers, values = generate_headers_values(data)
 	csv_file_path = doc_path + '/' + file_name + '.csv'
 	with open(csv_file_path, 'w', newline='') as t:
 		writer = csv.writer(t)
@@ -93,12 +176,10 @@ def write_to_csv(headers, values):
 		writer.writerows(values)
 	return csv_file_path
 
-def write_to_pdf(headers, values):
+def write_to_pdf(table_file_data, table_db_data):
 	pdf_file_path = doc_path + '/' + file_name + '.pdf'
-	
-	df = pd.DataFrame(values[1:], columns=values[0])
-	data = [df.columns.tolist()] + df.values.tolist()
-	doc = SimpleDocTemplate(pdf_file_path, pagesize=landscape(A1))
+
+	doc = SimpleDocTemplate(pdf_file_path, pagesize=landscape(A2))
 	styles = getSampleStyleSheet()
 	style = TableStyle([
 		('BACKGROUND', (0, 0), (-1, 0), '0x4c5b7b'),
@@ -110,53 +191,10 @@ def write_to_pdf(headers, values):
 		('BACKGROUND', (0, 1), (-1, -1), '0xd7f7e4'),
 		('GRID', (0, 0), (-1, -1), 1, colors.black)
 	])
-	col_widths = [0] * len(data[0])
-	data_adjust_width = copy.deepcopy(data)
-	data_adjust_width.insert(0, headers)
-	
-	for row in data_adjust_width:
-		for i, cell in enumerate(row):
-			col_widths[i] = max(col_widths[i], len(str(cell)) * 6)
-	
-	data_pages = [data[i:i + rows_per_page] for i in range(0, len(data), rows_per_page)]
-	
+
 	story = []
-	for i, data_page in enumerate(data_pages):
-		if i == 0:
-			title = "Db-sync-report"
-			title_style = getSampleStyleSheet()["Title"]
-			title_style.fontSize = 24
-			title_paragraph = Paragraph(title, title_style)
-			
-			image_path = "/opt/fmc_repository/Process/workflows/read/ubi_logo.png"
-			image_top = Image(image_path, width=180, height=40)
-			image_top.hAlign = 'RIGHT'
-			image_top.vAlign = 'TOP'
-			
-		data_page.insert(0, headers)
-		table = Table(data_page)
-		table._argW = col_widths
-		table.setStyle(style)
-			
-		image_botton = Image(image_path, width=90, height=20)
-		image_botton.hAlign = 'LEFT'
-		image_botton.vAlign = 'BOTTON'
-			
-		text = "Report generated at " + time.ctime()
-		text_style = getSampleStyleSheet()["h5"]
-		text_style.alignment = 1
-		text_paragraph = Paragraph(text, text_style)
-			
-		page_number = str(i + 1)
-		page_style = getSampleStyleSheet()["h5"]
-		page_style.alignment = 2
-		page_paragraph = Paragraph(page_number, page_style)
-		
-		if i == 0:
-			story.append(KeepTogether([image_top, title_paragraph, Spacer(0, 10), table, Spacer(0, 10), text_paragraph, image_botton,page_paragraph, PageBreak()]))
-		else:
-			story.append(KeepTogether([Spacer(0, 30), table, Spacer(0, 30), text_paragraph, image_botton, page_paragraph, PageBreak()]))
-		
+	create_pdf_story('Db', table_db_data, story, style)
+	create_pdf_story('File', table_file_data, story, style)
 	doc.build(story)
 	return pdf_file_path
 
@@ -216,13 +254,7 @@ headers_dic = {
     'dc_status': 'dc status'
 }
 
-index = 'ubi-sync-*'
-rows_per_page = 70
-doc_path = '/opt/fmc_repository/Process/workflows/esResultFiles'
-file_name = time.strftime("%Y-%m-%d %H-%M-%S") + '-db-sync-report'
 
-if not os.path.exists(doc_path):
-	os.makedirs(doc_path)
 
 dev_var = Variables()
 dev_var.add('auth_key', var_type='String')
@@ -242,18 +274,15 @@ query_condition = query_conditions(context)
 data = search(query_condition, context)
 
 if data:
-	data = process_data(data)
-	header_formart = [list(obj.keys()) for obj in data][0]
-	headers = [headers_dic.get(h) for h in header_formart]
-	values = [list(obj.values()) for obj in data]
+	data, table_file_data, table_db_data = process_data(data)
+
+	context['csv_download_link'] = write_to_csv(data)
 	
-	context['csv_download_link'] = write_to_csv(headers, values)
-	
-	context['pdf_download_link'] = write_to_pdf(headers, values)
+	context['pdf_download_link'] = write_to_pdf(table_file_data, table_db_data)
 
 	send_email(context)
 	
-	ret = MSA_API.process_content('ENDED', str(len(values)) + ' records were found and reports was generated', context, True)
+	ret = MSA_API.process_content('ENDED', str(len(data)) + ' records were found and reports was generated', context, True)
 	print(ret)
 	
 else:
