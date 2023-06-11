@@ -25,6 +25,7 @@ es_host = 'http://msa-es:9200'
 index = 'ubi-sync-*'
 rows_per_page = 45
 doc_path = '/opt/fmc_repository/Process/workflows/esResultFiles'
+image_path = '/opt/fmc_repository/Process/workflows/read/ubi_logo.png'
 file_name = time.strftime("%Y-%m-%d %H-%M-%S") + '-db-sync-report'
 
 if not os.path.exists(doc_path):
@@ -94,8 +95,8 @@ def search(query_condition, context):
 
 	scroll_id = resp["_scroll_id"]
 	total_results = resp["hits"]["total"]["value"]
-	data = []
 
+	data = []
 	for hit in resp["hits"]["hits"]:
 		data.append(hit["_source"])
 
@@ -135,7 +136,6 @@ def create_pdf_story(data_type, data, story, style):
 				title_style.fontSize = 28
 				title_paragraph = Paragraph(title, title_style)
 
-				image_path = "/opt/fmc_repository/Process/workflows/read/ubi_logo.png"
 				image_top = Image(image_path, width=180, height=40)
 				image_top.hAlign = 'RIGHT'
 				image_top.vAlign = 'TOP'
