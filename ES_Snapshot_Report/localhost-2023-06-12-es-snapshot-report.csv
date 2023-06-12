@@ -1,0 +1,7 @@
+Snapshot,Repository,Indices,Shards,Failed shards,Date created,Duration,State,Policy Name
+daily-snap-fvd2os88q9yaxrrnzpxotq,my_backup,29,29,0,"Jun 12, 2023 01:29:59 GMT",1s,SUCCESS,daily-snapshots
+daily-snap-pmoczqnyrzsku6k_i2ewpg,my_backup,29,29,0,"Jun 11, 2023 01:29:59 GMT",2s,SUCCESS,daily-snapshots
+daily-snap-7t3ps0cerv--ukg0vfri1w,my_backup,29,29,0,"Jun 10, 2023 01:29:59 GMT",1s,SUCCESS,daily-snapshots
+daily-snap-fvnnbhler3umupdnk6qymq,my_backup,28,28,0,"Jun 09, 2023 01:29:59 GMT",1s,SUCCESS,daily-snapshots
+daily-snap-drqv-tmar3uhlnen2qwkqg,my_backup,27,27,0,"Jun 08, 2023 01:29:59 GMT",1s,SUCCESS,daily-snapshots
+daily-snap-wfb2e-ggrlkof-poajldeg,my_backup,27,27,0,"Jun 07, 2023 08:58:25 GMT",1s,SUCCESS,daily-snapshots
