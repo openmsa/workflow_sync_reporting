@@ -9,12 +9,12 @@ Login to a live MSA as root and perform the following:
 	git clone https://github.com/openmsa/workflow_sync_reporting.git
 	chown -R ncuser. workflow_sync_reporting/
 	cd Process/
-	ln -s ../workflow_sync_reporting/DB_Sync_Report DB_Sync_Report
+	ln -s ../workflow_sync_reporting/MSA_Sync_Report MSA_Sync_Report
 
 
 Browse to the MSA GUI, open "Manage Repository".
 
-The new entry "DB_Sync_Report" should be available and browsable
+The new entry "MSA_Sync_Report" should be available and browsable
 under `Automation > Workflows`.
 
 
