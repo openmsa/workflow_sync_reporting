@@ -3,11 +3,11 @@
     <map>
         <entry>
             <key>DISPLAYNAME</key>
-            <value>Task_read_es.py</value>
+            <value>Task_Get_ES_Snapshot_Data.py</value>
         </entry>
         <entry>
             <key>DATE_MODIFICATION</key>
-            <value>1686579466285</value>
+            <value>1687421200827</value>
         </entry>
         <entry>
             <key>REPOSITORY</key>
@@ -15,7 +15,7 @@
         </entry>
         <entry>
             <key>DATE_CREATION</key>
-            <value>1686579466284</value>
+            <value>1687421200825</value>
         </entry>
         <entry>
             <key>TAG</key>
