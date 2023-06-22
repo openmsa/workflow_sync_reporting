@@ -24,8 +24,8 @@ es_host = 'http://msa-es:9200'
 
 index = 'ubi-sync-*'
 rows_per_page = 45
-doc_path = '/opt/fmc_repository/Process/DB_Sync_Report/esResultFiles'
-image_path = '/opt/fmc_repository/Process/DB_Sync_Report/ubi_logo.png'
+doc_path = '/opt/fmc_repository/Process/MSA_Sync_Report/esResultFiles'
+image_path = '/opt/fmc_repository/Process/MSA_Sync_Report/ubi_logo.png'
 file_name = time.strftime("%Y-%m-%d %H-%M-%S") + '-db-sync-report'
 
 if not os.path.exists(doc_path):
