@@ -32,3 +32,7 @@ to install a python module run the docker CMD below
 
 > docker exec --user ncuser <API_CONTAINER_ID> python3 -m pip install <python_module> --target /opt/fmc_repository/Process/PythonReference/
 
+to obtain pgmetrics execution permission
+
+> docker exec <API_CONTAINER_ID> chmod u+x /opt/fmc_repository/workflow_sync_reporting/MSA_Sync_Report/pgmetrics
+
