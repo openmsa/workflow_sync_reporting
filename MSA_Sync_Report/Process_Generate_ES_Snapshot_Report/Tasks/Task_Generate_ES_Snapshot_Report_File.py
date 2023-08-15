@@ -1,8 +1,8 @@
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
-from reportlab.lib.pagesizes import letter, landscape, A2
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.pagesizes import letter, landscape, A4
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Flowable
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Spacer, Image, PageBreak, KeepTogether
 from email.mime.application import MIMEApplication
@@ -22,12 +22,126 @@ import pandas as pd
 es_host = 'http://msa-es:9200'
 
 index = 'ubi-sync-*'
-rows_per_page = 45
+rows_per_page = 8
 doc_path = '/opt/fmc_repository/Process/MSA_Sync_Report'
 file_name = time.strftime("%Y-%m-%d") + '-es-snapshot-report'
 
+ubi_logo_path = '/opt/fmc_repository/workflow_sync_reporting/MSA_Sync_Report/logo/ubiqube_logo.png'
+tm_logo_path = '/opt/fmc_repository/workflow_sync_reporting/MSA_Sync_Report/logo/tm_logo.jpg'
+backgroud_path = "/opt/fmc_repository/workflow_sync_reporting/MSA_Sync_Report/logo/backgroud.jpg"
+
 if not os.path.exists(doc_path):
 	os.makedirs(doc_path)
+	
+def get_ubi_logo():
+	image_top = Image(ubi_logo_path)
+	return image_top
+
+ubi_logo = get_ubi_logo()
+
+def get_tm_logo():
+	image_bottom = Image(tm_logo_path)
+	return image_bottom
+
+tm_logo = get_tm_logo()
+
+table_style = TableStyle([
+	('TEXTCOLOR', (0, 0), (-1, -1), '#2e3a52'),
+	('ALIGN', (0, 0), (-1, -1), 'CENTRE'),
+	('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+	('FONTNAME', (0, 0), (-1, 0), 'Helvetica'),
+	('FONTSIZE', (0, 0), (-1, 0), 10),
+
+	('LINEBEFORE', (1, 1), (-1, -1), 1, colors.grey), 
+	('LINEABOVE', (0, 2), (-1, -1), 1, colors.grey),
+
+])
+
+table_wrap_text_style = ParagraphStyle(
+	'table text',
+	parent=getSampleStyleSheet()['Normal'],
+	fontName='Helvetica',
+	fontSize=9,
+	alignment=0,
+	textColor='#2e3a52',
+)
+
+class PositionedTitle(Flowable):
+	def __init__(self, table, backgroud_image, x=0, y=0, width=500, height=200):
+		Flowable.__init__(self)
+		self.table = table
+		self.x = x
+		self.y = y
+		self.width = width
+		self.height = height
+		self.back = backgroud_image
+
+	def draw(self):
+		self.canv.saveState()
+		self.canv.translate(self.x, self.y)
+		self.table.wrapOn(self.canv, self.width, self.height)
+		self.back.drawWidth = 595
+		self.back.drawOn(self.canv, -25, -60)
+		self.table.drawOn(self.canv, 0, 0)
+		self.canv.restoreState()
+
+class TableWithBackgroundImage(Flowable):
+	def __init__(self, table, img_path):
+		Flowable.__init__(self)
+		self.table = table
+		self.img_path = img_path
+
+	def wrap(self, availWidth, availHeight):
+		self.width, self.height = self.table.wrap(availWidth, availHeight)
+		return self.width, self.height
+
+	def drawOn(self, canvas, x, y, _sW=0):
+		img = Image(self.img_path, self.width, self.table._rowHeights[0])
+		img.drawOn(canvas, x, y + self.height - self.table._rowHeights[0])
+		self.table.drawOn(canvas, x, y)
+
+def add_header_footer(canvas, doc):
+	canvas.saveState()
+
+	ubi = ubi_logo
+	ubi.drawOn(canvas, 30, doc.pagesize[1] - 30)
+
+	tm = tm_logo
+	tm.drawOn(canvas, doc.pagesize[0] - 70, doc.pagesize[1] - 30)
+
+	text = "%s" % canvas.getPageNumber()
+	canvas.setFont("Times-Roman", 10)
+	canvas.setFillColor(colors.grey)
+
+	canvas.drawString(30, 20, 'Confidential')
+	canvas.drawString(doc.pagesize[0] - 40, 20, text)
+
+	canvas.restoreState()
+
+
+def get_title(doc):
+	title1 = 'MSA Infrastructure'
+	title1_style = getSampleStyleSheet()["Title"]
+	title1_style.fontSize = 24
+	title1_style.textColor = '#2e3a52'
+	title1_style.alignment = 0
+	title1_style.fontName = 'Helvetica'
+	title1_paragraph = Paragraph(title1, title1_style)
+
+	title2 = 'ElasticSearch snapshots report'
+	title2_style = getSampleStyleSheet()["Title"]
+	title2_style.fontSize = 32
+	title2_style.textColor = '#2e3a52'
+	title2_style.alignment = 0
+	title2_style.fontName = 'Helvetica'
+	title2_paragraph = Paragraph(title2, title2_style)
+
+	data = [[title1_paragraph], [title2_paragraph]]
+	table = Table(data)
+
+	background = Image(backgroud_path, doc.width)
+
+	return PositionedTitle(table, background, x=0, y=150)
 
 def generate_headers_values(data):
 	headers, values = [],[]
@@ -37,7 +151,7 @@ def generate_headers_values(data):
 		values = [list(obj.values()) for obj in data]
 	return headers, values
 
-def create_pdf_story(data_type, data, story, style):
+def create_pdf_story(data_type, data, story, doc):
 	headers, values = generate_headers_values(data)
 	if values:
 		df = pd.DataFrame(values[1:], columns=values[0])
@@ -45,51 +159,28 @@ def create_pdf_story(data_type, data, story, style):
 		col_widths = [0] * len(data[0])
 		data_adjust_width = copy.deepcopy(data)
 		data_adjust_width.insert(0, headers)
-
-		for row in data_adjust_width:
-			for i, cell in enumerate(row):
-				col_widths[i] = max(col_widths[i], len(str(cell)) * 10)
+		
+		total_width = 540
+		num_cols = len(headers)
+		col_width = total_width / num_cols
 
 		data_pages = [data[i:i + rows_per_page] for i in range(0, len(data), rows_per_page)]
 
 		for i, data_page in enumerate(data_pages):
-			if i == 0:
-				title = 'ElasticSearch snapshots report'
-				title_style = getSampleStyleSheet()["Title"]
-				title_style.fontSize = 28
-				title_paragraph = Paragraph(title, title_style)
 
-				image_path = "/opt/fmc_repository/workflow_sync_reporting/MSA_Sync_Report/ubi_logo.png"
-				image_top = Image(image_path, width=180, height=40)
-				image_top.hAlign = 'RIGHT'
-				image_top.vAlign = 'TOP'
 
 			data_page.insert(0, headers)
-			table = Table(data_page)
-			table._argW = col_widths
-			table.setStyle(style)
+			table = Table(data_page, colWidths=[col_width] * num_cols, hAlign='LEFT')
+			table.setStyle(table_style)
+			
+			for row in table._cellvalues:
+				for i, cell in enumerate(row):
+					row[i] = Paragraph(str(cell), table_wrap_text_style)
 
-			image_botton = Image(image_path, width=90, height=20)
-			image_botton.hAlign = 'LEFT'
-			image_botton.vAlign = 'BOTTON'
+			table_with_bg = TableWithBackgroundImage(table, backgroud_path)
 
-			text = "Report generated at " + time.ctime()
-			text_style = getSampleStyleSheet()["h5"]
-			text_style.alignment = 1
-			text_paragraph = Paragraph(text, text_style)
-
-			page_number = str(i + 1)
-			page_style = getSampleStyleSheet()["h5"]
-			page_style.alignment = 2
-			page_paragraph = Paragraph(page_number, page_style)
-
-			if i == 0:
-				story.append(KeepTogether(
-					[image_top, title_paragraph, Spacer(0, 10), table, Spacer(0, 10), text_paragraph, image_botton,
-					page_paragraph, PageBreak()]))
-			else:
-				story.append(KeepTogether(
-					[Spacer(0, 30), table, Spacer(0, 30), text_paragraph, image_botton, page_paragraph, PageBreak()]))
+			story.append(table_with_bg)
+			story.append(PageBreak())
 
 def write_to_csv(data, kibana_ip):
 	headers, values = generate_headers_values(data)
@@ -103,22 +194,17 @@ def write_to_csv(data, kibana_ip):
 def write_to_pdf(data, kibana_ip):
 	pdf_file_path = doc_path + '/' + kibana_ip + '-' + file_name + '.pdf'
 
-	doc = SimpleDocTemplate(pdf_file_path, pagesize=landscape(A2))
+	doc = SimpleDocTemplate(pdf_file_path, leftMargin=20, pagesize=A4)
 	styles = getSampleStyleSheet()
-	style = TableStyle([
-		('BACKGROUND', (0, 0), (-1, 0), '0x4c5b7b'),
-		('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-		('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-		('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-		('FONTSIZE', (0, 0), (-1, 0), 12),
-		('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-		('BACKGROUND', (0, 1), (-1, -1), '0xd7f7e4'),
-		('GRID', (0, 0), (-1, -1), 1, colors.black)
-	])
 
 	story = []
-	create_pdf_story('File', data, story, style)
-	doc.build(story)
+	
+	title = get_title(doc)
+	story.append(title)
+	
+	create_pdf_story('File', data, story, doc)
+	doc.build(story, onFirstPage=add_header_footer, onLaterPages=add_header_footer)
+	
 	return pdf_file_path
 
 headers_dic = {
