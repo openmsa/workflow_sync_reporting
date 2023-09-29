@@ -8,7 +8,7 @@
     <variable displayName="send_email" name="params.send_email" startIncrement="0" type="Boolean" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" default="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
     <variable displayName="sender_email" name="params.sender_email" startIncrement="0" type="Composite" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="6" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" selector="params.send_email" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false">
       <behaviors>
-        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="sender_email" displayOrder="6" maxLength="100" isMandatory="false" isUserLocked="false" name="params.sender_email" selectorValue="true" startIncrement="0" type="String">
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="sender_email" displayOrder="6" maxLength="100" isMandatory="false" isUserLocked="false" name="params.sender_email" selectorValue="true" startIncrement="0" type="String" localVarToFilter="" remoteVarToFilter="" uniqueItemsInDropDownList="false">
           <compositeKey>false</compositeKey>
           <codeLanguage/>
           <defaultValueLong/>
@@ -29,7 +29,7 @@
           <selector>params.send_email</selector>
           <isUniqueGlobal>false</isUniqueGlobal>
         </behaviour>
-        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="sender_email" displayOrder="6" maxLength="100" isMandatory="false" isUserLocked="false" name="params.sender_email" selectorValue="false" startIncrement="0" type="String">
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="sender_email" displayOrder="6" maxLength="100" isMandatory="false" isUserLocked="false" name="params.sender_email" selectorValue="false" startIncrement="0" type="String" localVarToFilter="" remoteVarToFilter="" uniqueItemsInDropDownList="false">
           <compositeKey>false</compositeKey>
           <codeLanguage/>
           <defaultValueLong/>
@@ -54,7 +54,7 @@
     </variable>
     <variable displayName="sender_password" name="params.sender_password" startIncrement="0" type="Composite" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="7" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" selector="params.send_email" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false">
       <behaviors>
-        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="sender_password" displayOrder="7" maxLength="100" isMandatory="false" isUserLocked="false" name="params.sender_password" selectorValue="true" startIncrement="0" type="String">
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="sender_password" displayOrder="7" maxLength="100" isMandatory="false" isUserLocked="false" name="params.sender_password" selectorValue="true" startIncrement="0" type="String" localVarToFilter="" remoteVarToFilter="" uniqueItemsInDropDownList="false">
           <compositeKey>false</compositeKey>
           <codeLanguage/>
           <defaultValueLong/>
@@ -75,7 +75,7 @@
           <selector>params.send_email</selector>
           <isUniqueGlobal>false</isUniqueGlobal>
         </behaviour>
-        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="sender_password" displayOrder="7" maxLength="100" isMandatory="false" isUserLocked="false" name="params.sender_password" selectorValue="false" startIncrement="0" type="String">
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="sender_password" displayOrder="7" maxLength="100" isMandatory="false" isUserLocked="false" name="params.sender_password" selectorValue="false" startIncrement="0" type="String" localVarToFilter="" remoteVarToFilter="" uniqueItemsInDropDownList="false">
           <compositeKey>false</compositeKey>
           <codeLanguage/>
           <defaultValueLong/>
@@ -100,7 +100,7 @@
     </variable>
     <variable displayName="receiver_email" name="params.receiver_email" startIncrement="0" type="Composite" mandatoryArray="false" visible="true" description="xxx@xxx.com,yyy@yyy.com,zzz@zzz.com" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="8" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" selector="params.send_email" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false">
       <behaviors>
-        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="receiver_email" displayOrder="8" maxLength="100" isMandatory="false" isUserLocked="false" name="params.receiver_email" selectorValue="true" startIncrement="0" type="String">
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="receiver_email" displayOrder="8" maxLength="100" isMandatory="false" isUserLocked="false" name="params.receiver_email" selectorValue="true" startIncrement="0" type="String" localVarToFilter="" remoteVarToFilter="" uniqueItemsInDropDownList="false">
           <compositeKey>false</compositeKey>
           <codeLanguage/>
           <defaultValueLong/>
@@ -121,7 +121,7 @@
           <selector>params.send_email</selector>
           <isUniqueGlobal>false</isUniqueGlobal>
         </behaviour>
-        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="receiver_email" displayOrder="8" maxLength="100" isMandatory="false" isUserLocked="false" name="params.receiver_email" selectorValue="false" startIncrement="0" type="String">
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="receiver_email" displayOrder="8" maxLength="100" isMandatory="false" isUserLocked="false" name="params.receiver_email" selectorValue="false" startIncrement="0" type="String" localVarToFilter="" remoteVarToFilter="" uniqueItemsInDropDownList="false">
           <compositeKey>false</compositeKey>
           <codeLanguage/>
           <defaultValueLong/>
@@ -146,7 +146,7 @@
     </variable>
     <variable displayName="subject" name="params.subject" startIncrement="0" type="Composite" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="9" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" selector="params.send_email" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false">
       <behaviors>
-        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="subject" displayOrder="9" maxLength="100" isMandatory="false" isUserLocked="false" name="params.subject" selectorValue="true" startIncrement="0" type="String">
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="subject" displayOrder="9" maxLength="100" isMandatory="false" isUserLocked="false" name="params.subject" selectorValue="true" startIncrement="0" type="String" localVarToFilter="" remoteVarToFilter="" uniqueItemsInDropDownList="false">
           <compositeKey>false</compositeKey>
           <codeLanguage/>
           <defaultValueLong/>
@@ -167,7 +167,7 @@
           <selector>params.send_email</selector>
           <isUniqueGlobal>false</isUniqueGlobal>
         </behaviour>
-        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="subject" displayOrder="9" maxLength="100" isMandatory="false" isUserLocked="false" name="params.subject" selectorValue="false" startIncrement="0" type="String">
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="subject" displayOrder="9" maxLength="100" isMandatory="false" isUserLocked="false" name="params.subject" selectorValue="false" startIncrement="0" type="String" localVarToFilter="" remoteVarToFilter="" uniqueItemsInDropDownList="false">
           <compositeKey>false</compositeKey>
           <codeLanguage/>
           <defaultValueLong/>
@@ -192,7 +192,7 @@
     </variable>
     <variable displayName="message" name="params.message" startIncrement="0" type="Composite" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="10" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" selector="params.send_email" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false">
       <behaviors>
-        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="message" displayOrder="10" maxLength="100" isMandatory="false" isUserLocked="false" name="params.message" selectorValue="true" startIncrement="0" type="String">
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="true" displayName="message" displayOrder="10" maxLength="100" isMandatory="false" isUserLocked="false" name="params.message" selectorValue="true" startIncrement="0" type="String" localVarToFilter="" remoteVarToFilter="" uniqueItemsInDropDownList="false">
           <compositeKey>false</compositeKey>
           <codeLanguage/>
           <defaultValueLong/>
@@ -213,7 +213,7 @@
           <selector>params.send_email</selector>
           <isUniqueGlobal>false</isUniqueGlobal>
         </behaviour>
-        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="message" displayOrder="10" maxLength="100" isMandatory="false" isUserLocked="false" name="params.message" selectorValue="false" startIncrement="0" type="String">
+        <behaviour arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" editable="false" visible="false" displayName="message" displayOrder="10" maxLength="100" isMandatory="false" isUserLocked="false" name="params.message" selectorValue="false" startIncrement="0" type="String" localVarToFilter="" remoteVarToFilter="" uniqueItemsInDropDownList="false">
           <compositeKey>false</compositeKey>
           <codeLanguage/>
           <defaultValueLong/>
@@ -248,11 +248,11 @@
     <variable displayName="duration" name="params.snapshot.0.duration" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="false" arrayCanRemove="false" arrayCanMove="false" arrayCanEdit="false" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="true" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
     <variable displayName="state" name="params.snapshot.0.state" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="false" arrayCanRemove="false" arrayCanMove="false" arrayCanEdit="false" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="true" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
     <variable displayName="policyName" name="params.snapshot.0.policyName" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="false" arrayCanRemove="false" arrayCanMove="false" arrayCanEdit="false" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="true" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
-    <variable displayName="es_snapshot_csv_download_link" name="params.es_snapshot_csv_download_link" startIncrement="0" type="Link" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="true" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
-    <variable displayName="es_snapshot_pdf_download_link" name="params.es_snapshot_pdf_download_link" startIncrement="0" type="Link" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="true" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
-    <variable displayName="db_username" name="params.db_username" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="27" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="true" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
-    <variable displayName="db_password" name="params.db_password" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="28" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="true" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
-    <variable displayName="MSA_infrastructure_status_pdf_download_link" name="params.MSA_infrastructure_status_pdf_download_link" startIncrement="0" type="Link" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="29" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="true" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="es snapshot csv download_link" name="params.es_snapshot_csv_download_link" startIncrement="0" type="Link" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="true" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="es snapshot pdf download link" name="params.es_snapshot_pdf_download_link" startIncrement="0" type="Link" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="true" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="db username" name="params.db_username" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="27" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="true" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="db password" name="params.db_password" startIncrement="0" type="Password" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="28" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="false" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="MSA infrastructure status pdf download link" name="params.MSA_infrastructure_status_pdf_download_link" startIncrement="0" type="Link" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" maxLength="100" displayOrder="29" increment="0" refServiceURI="" keepOnImport="false" editable="false" uniqueItemsInDropDownList="false" onlyDetailView="false" createOnlyView="false" localVarNameMatch="" remoteVarNameMatch="" localVarToFilter="" remoteVarToFilter="" remoteVarValueToFilter="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isCompositeKey="false" isMandatory="false" isUserLocked="true" isEditLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
   </variables>
   <example/>
   <process name="Process/MSA_Sync_Report/Process_create">
@@ -294,7 +294,7 @@
     </task>
   </process>
   <process name="Process/MSA_Sync_Report/Process_Generate_DB_Sync_Whin_DB_Report">
-    <displayName>Generate DB Sync Whin DB Report</displayName>
+    <displayName>Generate DB Sync Within DB Report</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
@@ -307,11 +307,10 @@
     <icon/>
     <description/>
     <displayField>service_id</displayField>
-    <serviceTaskType>python</serviceTaskType>
     <order>10000</order>
     <visibility>5</visibility>
-    <msDirectoryName/>
-    <processToAssiocateToTrashIcon/>
+    <serviceTaskType>python</serviceTaskType>
+    <processToAssociateToTrashIcon/>
     <name>MSA-sync-report</name>
     <group/>
   </information>
