@@ -91,27 +91,20 @@ def search(query_condition, context):
 	
 	auth_key = context['auth_key']
 	es = Elasticsearch(hosts=es_host, basic_auth=auth_key)
-	resp = es.search(index=index, body=query_condition, scroll='1m')
-
-	scroll_id = resp["_scroll_id"]
-	total_results = resp["hits"]["total"]["value"]
-
+	
 	data = []
-	for hit in resp["hits"]["hits"]:
-		data.append(hit["_source"])
+	while True:
+		response = es.search(index=index, body=query_condition)
 
-	while total_results > 0:
-		response = es.scroll(scroll_id=scroll_id, scroll="1m")
-
-		scroll_id = response["_scroll_id"]
 		hits = response["hits"]["hits"]
-		if len(hits) == 0:
+		
+		if not hits:
 			break
 
-		total_results -= len(hits)
-	
-		for hit in hits:
-			data.append(hit["_source"])
+		data.extend(hit["_source"] for hit in hits)
+		
+		last_hit = hits[-1]
+		search_body["search_after"] = [last_hit["_doc"]]
 	return data
 
 def create_pdf_story(data_type, data, story, style):
@@ -257,7 +250,7 @@ headers_dic = {
 
 
 dev_var = Variables()
-dev_var.add('auth_key', var_type='String')
+#dev_var.add('auth_key', var_type='String')
 dev_var.add('start_date', var_type='String')
 dev_var.add('end_date', var_type='String')
 dev_var.add('sender_email', var_type='String')
@@ -268,6 +261,8 @@ dev_var.add('message', var_type='String')
 dev_var.add('send_email', var_type='Boolean')
 
 context = Variables.task_call(dev_var)
+
+context['auth_key']="c3VwZXJ1c2VyOnheWnl1R002fnU9K2ZZMkc="
 
 query_condition = query_conditions(context)
 

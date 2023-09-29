@@ -491,12 +491,14 @@ def add_backends(data, story):
 				story.append(KeepTogether([table_with_bg, PageBreak()]))
 
 dev_var = Variables()
-dev_var.add('db_username', var_type='String')
-dev_var.add('db_password', var_type='String')
+#dev_var.add('db_username', var_type='String')
+#dev_var.add('db_password', var_type='String')
 dev_var.add('MSA_infrastructure_status_pdf_download_link', var_type='String')
 context = Variables.task_call(dev_var)
 
 
+context['db_username']="ncgest"
+context['db_password']="Sec_52jlkhin_b4hdh"
 
 command = 'PGPASSWORD='+ context['db_password'] +' ./opt/fmc_repository/Process/MSA_Sync_Report/pgmetrics -f json -h db -p 5432 -U '+ context['db_username'] +' POSTGRESQL'
 result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
