@@ -48,7 +48,7 @@ Create a new instance of the workflow by executing "Create Instance" create proc
 
 Execute the different update processes for generating different kinds of reports. Below are details for the said processes:
 
-##Generate DB Sync Across DCs Report
+## Generate DB Sync Across DCs Report
 Input fields:
 
 start_date: start time of es
@@ -69,7 +69,7 @@ Output:
 
 CSV and PDF download links for reports
 
-##Generate ES Snapshot Report
+## Generate ES Snapshot Report
 Input fields:
 
 kibana_ip : Input MSA/kibana IP . Leave blank if kibana is on the monitoring MSA(i.e. localhost)
@@ -82,7 +82,7 @@ es_snapshot_pdf_download_link
 
 User can click on the links shown for the files along the above variables and download the report in the desired format.
 
-##Generate DB Sync Whin DB Report
+## Generate DB Sync Whin DB Report
 Input fields:
 
 Output:
